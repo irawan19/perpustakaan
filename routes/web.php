@@ -17,6 +17,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::group(['prefix' => 'anggota'], function() {
         Route::get('/', [Anggota::class, 'index'])->name('indexanggota');
         Route::get('/create', [Anggota::class, 'create'])->name('createanggota');
+        Route::post('/', [Anggota::class, 'store'])->name('storeanggota');
+        Route::get('/{id}/edit', [Anggota::class, 'edit'])->name('editanggota');
+        Route::put('/{id}/edit', [Anggota::class, 'update'])->name('updateanggota');
+        Route::delete('/{id}', [Anggota::class, 'destroy'])->name('destroyanggota');
     });
 
     Route::group(['prefix' => 'buku'], function() {

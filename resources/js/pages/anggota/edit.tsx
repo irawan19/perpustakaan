@@ -18,27 +18,38 @@ import { useState } from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Tambah Anggota',
-        href: '/anggota/create',
+        title: 'Edit Anggota',
+        href: '/anggota/edit',
     },
 ];
 
-export default function Tambah() {
+interface Anggota{
+    id:number,
+    no:number,
+    tanggal_lahir: Date,
+    nama: string,
+}
+
+interface Props {
+    anggota: Anggota;
+}
+
+export default function Edit({anggota} : Props) {
     const [open, setOpen] = useState(false)
-    const { data, setData, post, processing, errors } = useForm({
-        no: "",
-        tanggal_lahir: new Date(),
-        nama: "",
+    const { data, setData, put, processing, errors } = useForm({
+        no: anggota.no,
+        tanggal_lahir: anggota.tanggal_lahir,
+        nama: anggota.nama,
     });
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        post(route('storeanggota'));
+        put(route('updateanggota', anggota.id));
     }
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Tambah Anggota" />
+            <Head title="Edit Anggota" />
             <div className="w-6/12 p-4 m-0 center-col">
                 <form onSubmit={handleSubmit}>
                     <Card>
@@ -67,7 +78,7 @@ export default function Tambah() {
                                             autoFocus
                                             placeholder="Masukkan No Anggota..."
                                             value={data.no}
-                                            onChange={(e) => setData('no', e.target.value)}
+                                            onChange={(e) => setData('no', Number(e.target.value))}
                                         >
                                         </Input>
                                     </div>
