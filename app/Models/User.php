@@ -6,6 +6,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Anggota;
+use App\Models\Buku;
+use App\Models\Transaksi;
 
 class User extends Authenticatable
 {
@@ -44,5 +47,17 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function anggota() {
+        return $this->hasOne(Anggota::class, 'users_id');
+    }
+
+    public function buku() {
+        return $this->hasOne(Buku::class, 'users_id');
+    }
+
+    public function transaksi() {
+        return $this->hasOne(Transaksi::class, 'users_id');
     }
 }

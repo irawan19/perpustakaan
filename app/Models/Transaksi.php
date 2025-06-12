@@ -4,17 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\User;
 
-class Buku extends Model
+class Transaksi extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
-    protected $table = 'bukus';
+    protected $table = 'transaksis';
     protected $primary_key = 'id';
-    protected $fillable = ['users_id', 'judul', 'penerbit', 'dimensi', 'stok'];
+    protected $fillable = ['users_id', 'anggotas_id', 'bukus_id', 'tanggal_pinjam', 'tanggal_kembali'];
 
     public function user() {
         return $this->belongsTo(User::class, 'users_id');

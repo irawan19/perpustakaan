@@ -11,16 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('anggotas', function (Blueprint $table) {
+        Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('users_id')->unsigned()->index()->nullable();
             $table->foreign('users_id')->references('id')->on('users')->onUpdate('set null')->onDelete('set null');
-            $table->string('no')->unique();
-            $table->date('tanggal_lahir');
-            $table->string('nama');
+            $table->bigInteger('anggotas_id')->unsigned()->index()->nullable();
+            $table->foreign('anggotas_id')->references('id')->on('anggotas')->onUpdate('set null')->onDelete('set null');
+            $table->bigInteger('bukus_id')->unsigned()->index()->nullable();
+            $table->foreign('bukus_id')->references('id')->on('bukus')->onUpdate('set null')->onDelete('set null');
+            $table->date('tanggal_pinjam');
+            $table->date('tanggal_kembali')->nullable();
             $table->timestamps();
-            $table->softDeletes();
-
         });
     }
 
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('anggotas');
+        Schema::dropIfExists('transaksis');
     }
 };

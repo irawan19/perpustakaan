@@ -27,6 +27,9 @@ interface Anggota {
     no: number,
     tanggal_lahir: Date,
     nama: string,
+    created_at: Date,
+    updated_at: Date,
+    name: string,
 }
 
 interface PageProps {
@@ -75,6 +78,9 @@ export default function Index() {
                                         <TableHead>No Anggota</TableHead>
                                         <TableHead>Tanggal Lahir</TableHead>
                                         <TableHead>Nama</TableHead>
+                                        <TableHead>Dibuat</TableHead>
+                                        <TableHead>Diperbarui</TableHead>
+                                        <TableHead>Diperbarui Oleh</TableHead>
                                         <TableHead>Edit</TableHead>
                                         <TableHead>Hapus</TableHead>
                                     </TableRow>
@@ -86,6 +92,9 @@ export default function Index() {
                                             <TableCell>{anggota.no}</TableCell>
                                             <TableCell>{formatTanggal(anggota.tanggal_lahir)}</TableCell>
                                             <TableCell>{anggota.nama}</TableCell>
+                                            <TableCell>{formatTanggal(anggota.created_at)}</TableCell>
+                                            <TableCell>{formatTanggal(anggota.updated_at)}</TableCell>
+                                            <TableCell>{anggota.user.name}</TableCell>
                                             <TableCell>
                                                 <Link href={route('editanggota', anggota.id)}>
                                                     <Button variant="default">

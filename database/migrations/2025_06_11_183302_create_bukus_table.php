@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('bukus', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('users_id')->unsigned()->index()->nullable();
+            $table->foreign('users_id')->references('id')->on('users')->onUpdate('set null')->onDelete('set null');
             $table->string('judul');
             $table->string('penerbit');
             $table->longtext('dimensi');

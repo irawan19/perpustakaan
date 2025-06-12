@@ -6,11 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Buku;
+use Auth;
 
 class BukuController extends Controller
 {
     public function index() {
-        $bukus = Buku::all();
+        $bukus = Buku::with('user')->get();
         return Inertia::render('buku/index', compact('bukus'));
     }
 
@@ -26,7 +27,13 @@ class BukuController extends Controller
             'stok'              => 'required|numeric|min:1',
         ]);
 
-        Buku::create($request->all());
+        Buku::create([
+            'users_id'  => Auth::user()->id,
+            'judul'     => $request->judul,
+            'penerbit'  => $request->penerbit,
+            'dimensi'   => $request->dimensi,
+            'stok'      => $request->stok,
+        ]);
         return redirect()->route('indexbuku')->with('message', 'Buku berhasil ditambahkan.');
     }
 
@@ -45,6 +52,7 @@ class BukuController extends Controller
 
         
         Buku::find($id)->update([
+            'users_id'          => Auth::user()->id,
             'judul'             => $request->judul,
             'penerbit'          => $request->penerbit,
             'dimensi'           => $request->dimensi,

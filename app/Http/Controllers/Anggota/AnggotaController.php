@@ -6,11 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Anggota;
+use Auth;
 
 class AnggotaController extends Controller
 {
     public function index() {
-        $anggotas = Anggota::all();
+        $anggotas = Anggota::with('user')->get();
         return Inertia::render('anggota/index', compact('anggotas'));
     }
 
@@ -25,7 +26,12 @@ class AnggotaController extends Controller
             'nama'              => 'required'
         ]);
 
-        Anggota::create($request->all());
+        Anggota::create([
+            'users_id'      => Auth::user()->id,
+            'no'            => $request->no,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'nama'          => $request->nama,
+        ]);
         return redirect()->route('indexanggota')->with('message', 'Anggota berhasil ditambahkan.');
     }
 
@@ -43,6 +49,7 @@ class AnggotaController extends Controller
 
         
         Anggota::find($id)->update([
+            'users_id'      => Auth::user()->id,
             'no'            => $request->no,
             'tanggal_lahir' => $request->tanggal_lahir,
             'nama'          => $request->nama,

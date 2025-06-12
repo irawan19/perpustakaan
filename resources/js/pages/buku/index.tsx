@@ -28,6 +28,9 @@ interface Buku {
     penerbit: string,
     dimensi: string,
     stok: number,
+    created_at: Date,
+    updated_at: Date,
+    name: string,
 }
 
 interface PageProps {
@@ -77,6 +80,9 @@ export default function Index() {
                                         <TableHead>Dimensi</TableHead>
                                         <TableHead>Penerbit</TableHead>
                                         <TableHead>Stok</TableHead>
+                                        <TableHead>Dibuat</TableHead>
+                                        <TableHead>Diperbarui</TableHead>
+                                        <TableHead>Diperbarui Oleh</TableHead>
                                         <TableHead>Edit</TableHead>
                                         <TableHead>Hapus</TableHead>
                                     </TableRow>
@@ -89,6 +95,9 @@ export default function Index() {
                                             <TableCell>{buku.dimensi}</TableCell>
                                             <TableCell>{buku.penerbit}</TableCell>
                                             <TableCell>{buku.stok}</TableCell>
+                                            <TableCell>{formatTanggal(buku.created_at)}</TableCell>
+                                            <TableCell>{formatTanggal(buku.updated_at)}</TableCell>
+                                            <TableCell>{buku.user.name}</TableCell>
                                             <TableCell>
                                                 <Link href={route('editbuku', buku.id)}>
                                                     <Button variant="default">
