@@ -22,6 +22,7 @@ buat database mysql dengan nama :
 perpustakan
 ```
 
+sesuaikan .env untuk koneksi database
 import perpustakaan.sql di dalam folder database. jalankan :
 
 
