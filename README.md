@@ -1,9 +1,9 @@
 # Perpustakaan
 
 ## Tech Stack
-- BE - laravel
+- BE - Laravel
 - FE - Reactjs
-- DB - mysql
+- DB - MySql
 
 ## Instalasi
 install composer dengan perintah :

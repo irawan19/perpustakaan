@@ -31,6 +31,24 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::put('/{id}/edit', [Buku::class, 'update'])->name('updatebuku');
         Route::delete('/{id}', [Buku::class, 'destroy'])->name('destroybuku');
     });
+
+    Route::group(['prefix' => 'peminjaman'], function() {
+        Route::get('/', [Peminjaman::class, 'index'])->name('indexpeminjaman');
+        Route::get('/create', [Peminjaman::class, 'create'])->name('createpeminjaman');
+        Route::post('/', [Peminjaman::class, 'store'])->name('storepeminjaman');
+        Route::get('/{id}/edit', [Peminjaman::class, 'edit'])->name('editpeminjaman');
+        Route::put('/{id}/edit', [Peminjaman::class, 'update'])->name('updatepeminjaman');
+        Route::delete('/{id}', [Peminjaman::class, 'destroy'])->name('destroypeminjaman');
+    });
+    
+    Route::group(['prefix' => 'pengembalian'], function() {
+        Route::get('/', [Pengembalian::class, 'index'])->name('indexpengembalian');
+        Route::get('/create', [Pengembalian::class, 'create'])->name('createpengembalian');
+        Route::post('/', [Pengembalian::class, 'store'])->name('storepengembalian');
+        Route::get('/{id}/edit', [Pengembalian::class, 'edit'])->name('editpengembalian');
+        Route::put('/{id}/edit', [Pengembalian::class, 'update'])->name('updatepengembalian');
+        Route::delete('/{id}', [Pengembalian::class, 'destroy'])->name('destroypengembalian');
+    });
 });
 
 require __DIR__.'/settings.php';
