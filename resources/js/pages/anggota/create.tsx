@@ -75,7 +75,7 @@ export default function Tambah() {
 
                                 <div className="w-full md:w-1/2 px-2 mb-4">
                                     <div className="gap-1.5">
-                                        <Label htmlFor='nama'>Tanggal Lahir</Label>
+                                        <Label htmlFor='tanggal_lahir'>Tanggal Lahir</Label>
                                         <br />
                                         <Popover open={open} onOpenChange={setOpen}>
                                             <PopoverTrigger asChild>

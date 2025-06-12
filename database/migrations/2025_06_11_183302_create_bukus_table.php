@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->string('penerbit');
-            $table->string('dimensi');
+            $table->longtext('dimensi');
             $table->double('stok');
             $table->timestamps();
             $table->softDeletes();

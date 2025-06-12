@@ -42,7 +42,7 @@ export default function Index() {
     const {processing, delete: destroy} = useForm();
 
     const handleHapus = (id: number, nama: string) => {
-        if(confirm(`Apakah anda ingin menghapus ${nama} ?`)){
+        if(confirm(`Apakah anda ingin menghapus anggota ${nama} ?`)){
             destroy(`/anggota/${id}`);
         }
     }
@@ -100,7 +100,7 @@ export default function Index() {
                                     ))}
                                 </TableBody>
                             </Table>
-                        )};
+                        )}
                     </CardContent>
                 </Card>
             </div>

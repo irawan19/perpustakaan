@@ -24,7 +24,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     Route::group(['prefix' => 'buku'], function() {
-        Route::get('/', [Buku::class, 'index'])->name('buku.index');
+        Route::get('/', [Buku::class, 'index'])->name('indexbuku');
+        Route::get('/create', [Buku::class, 'create'])->name('createbuku');
+        Route::post('/', [Buku::class, 'store'])->name('storebuku');
+        Route::get('/{id}/edit', [Buku::class, 'edit'])->name('editbuku');
+        Route::put('/{id}/edit', [Buku::class, 'update'])->name('updatebuku');
+        Route::delete('/{id}', [Buku::class, 'destroy'])->name('destroybuku');
     });
 });
 

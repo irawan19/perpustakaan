@@ -86,7 +86,7 @@ export default function Edit({anggota} : Props) {
 
                                 <div className="w-full md:w-1/2 px-2 mb-4">
                                     <div className="gap-1.5">
-                                        <Label htmlFor='nama'>Tanggal Lahir</Label>
+                                        <Label htmlFor='tanggal_lahir'>Tanggal Lahir</Label>
                                         <br />
                                         <Popover open={open} onOpenChange={setOpen}>
                                             <PopoverTrigger asChild>
@@ -132,7 +132,7 @@ export default function Edit({anggota} : Props) {
                         </CardContent>
                         <CardFooter>
                             <div className="ms-auto">
-                                <Button type="submit" disabled={processing} variant="default" className='mr-2'>Simpan</Button>
+                                <Button type="submit" disabled={processing} variant="default" className='mr-2'>Perbarui</Button>
                                 <Link href={route('indexanggota')}>
                                     <Button variant='destructive'>Batal</Button>
                                 </Link>

@@ -20,9 +20,10 @@ class BukuController extends Controller
 
     public function store(Request $request) {
         $request->validate([
-            'no'                => 'required|unique:bukus',
-            'tanggal_lahir'     => 'required',
-            'nama'              => 'required'
+            'judul'             => 'required',
+            'penerbit'          => 'required',
+            'dimensi'           => 'required',
+            'stok'              => 'required|numeric|min:1',
         ]);
 
         Buku::create($request->all());
@@ -36,16 +37,18 @@ class BukuController extends Controller
 
     public function update(Request $request, $id) {
         $request->validate([
-            'no'                => 'required|unique:bukus,no,'.$id.',id',
-            'tanggal_lahir'     => 'required',
-            'nama'              => 'required'
+            'judul'             => 'required',
+            'penerbit'          => 'required',
+            'dimensi'           => 'required',
+            'stok'              => 'required|numeric|min:1',
         ]);
 
         
         Buku::find($id)->update([
-            'no'            => $request->no,
-            'tanggal_lahir' => $request->tanggal_lahir,
-            'nama'          => $request->nama,
+            'judul'             => $request->judul,
+            'penerbit'          => $request->penerbit,
+            'dimensi'           => $request->dimensi,
+            'stok'              => $request->stok,
         ]);
         return redirect()->route('indexbuku')->with('message', 'Buku berhasil diperbarui.');
     }
