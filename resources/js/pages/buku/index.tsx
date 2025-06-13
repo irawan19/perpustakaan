@@ -152,7 +152,7 @@ export default function Index({ bukus, cari, flash }: PageProps) {
                     <CardFooter>
                         <div className="flex items-center justify-between px-2 ms-auto">
                             <div className="text-sm text-muted-foreground">
-                                Showing {bukus.from} to {bukus.to} of {bukus.total} results
+                                Menampilkan {bukus.from} sampai {bukus.to} dari {bukus.total} hasil
                             </div>
                             <div className="flex items-center space-x-2">
                                 <Button variant="outline"
