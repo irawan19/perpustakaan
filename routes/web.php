@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\Dashboard\DashboardController as Dashboard;
 use App\Http\Controllers\Buku\BukuController as Buku;
 use App\Http\Controllers\Anggota\AnggotaController as Anggota;
 use App\Http\Controllers\Peminjaman\PeminjamanController as Peminjaman;
@@ -12,9 +13,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', function () {
-        return Inertia::render('dashboard');
-    })->name('dashboard');
+    Route::get('dashboard', [Dashboard::class, 'index'])->name('dashboard');
 
     Route::group(['prefix' => 'anggota'], function() {
         Route::get('/', [Anggota::class, 'index'])->name('indexanggota');
