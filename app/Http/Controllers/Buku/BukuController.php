@@ -11,8 +11,22 @@ use Auth;
 class BukuController extends Controller
 {
     public function index() {
-        $bukus = Buku::with('user')->get();
-        return Inertia::render('buku/index', compact('bukus'));
+        $query = Buku::with('user')->orderBy('judul');
+
+        if (request()->has('cari')) {
+            $cari = request('cari');
+            $query->where(function($q) use ($cari) {
+                $q->where('no', 'like', "%{$cari}%")
+                  ->orWhere('nama', 'like', "%{$cari}%");
+            });
+        }
+
+        $bukus = $query->paginate(10);
+
+        return Inertia::render('buku/index', [
+            'bukus'  => $bukus,
+            'cari'      => request('cari', '')
+        ]);
     }
 
     public function create() {

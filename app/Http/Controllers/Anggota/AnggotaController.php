@@ -11,8 +11,22 @@ use Auth;
 class AnggotaController extends Controller
 {
     public function index() {
-        $anggotas = Anggota::with('user')->get();
-        return Inertia::render('anggota/index', compact('anggotas'));
+        $query = Anggota::with('user')->orderBy('no');
+
+        if (request()->has('cari')) {
+            $cari = request('cari');
+            $query->where(function($q) use ($cari) {
+                $q->where('no', 'like', "%{$cari}%")
+                  ->orWhere('nama', 'like', "%{$cari}%");
+            });
+        }
+
+        $anggotas = $query->paginate(10);
+
+        return Inertia::render('anggota/index', [
+            'anggotas'  => $anggotas,
+            'cari'      => request('cari', '')
+        ]);
     }
 
     public function create() {
