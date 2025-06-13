@@ -35,15 +35,21 @@ interface Props {
 }
 
 export default function Edit({anggota} : Props) {
-    const [open, setOpen] = useState(false)
-    const { data, setData, put, processing, errors } = useForm({
+    const [open, setOpen] = useState(false);
+    const toYmd = (date: Date) =>
+    `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+    const { data, setData, put, processing, errors, transform } = useForm({
         no: anggota.no,
-        tanggal_lahir: anggota.tanggal_lahir,
+        tanggal_lahir: new Date(anggota.tanggal_lahir),
         nama: anggota.nama,
     });
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+         transform((data) => ({
+            ...data,
+            tanggal_lahir: toYmd(data.tanggal_lahir),
+        }));
         put(route('updateanggota', anggota.id));
     }
 

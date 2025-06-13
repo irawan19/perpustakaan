@@ -61,11 +61,10 @@ class AnggotaController extends Controller
             'nama'              => 'required'
         ]);
 
-        
         Anggota::find($id)->update([
             'users_id'      => Auth::user()->id,
             'no'            => $request->no,
-            'tanggal_lahir' => $request->tanggal_lahir,
+            'tanggal_lahir' => date('Y-m-d', strtotime($request->tanggal_lahir)),
             'nama'          => $request->nama,
         ]);
         return redirect()->route('indexanggota')->with('message', 'Anggota berhasil diperbarui.');

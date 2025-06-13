@@ -12,7 +12,7 @@ import { Textarea } from '@/components/ui/textarea';
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Edit Buku',
-        href: '/buku/create',
+        href: '/buku/edit',
     },
 ];
 

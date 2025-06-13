@@ -24,7 +24,10 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 export default function Tambah() {
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(false);
+    const toYmd = (date: Date) =>
+    `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+
     const { data, setData, post, processing, errors } = useForm({
         no: "",
         tanggal_lahir: new Date(),
@@ -33,7 +36,13 @@ export default function Tambah() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        post(route('storeanggota'));
+        const formattedData = {
+            ...data,
+            tanggal_lahir: toYmd(data.tanggal_lahir),
+        };
+        post(route('storeanggota', {
+            data:formattedData
+        }));
     }
 
     return (

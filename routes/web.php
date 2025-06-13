@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\Buku\BukuController as Buku;
 use App\Http\Controllers\Anggota\AnggotaController as Anggota;
+use App\Http\Controllers\Peminjaman\PeminjamanController as Peminjaman;
+use App\Http\Controllers\Pengembalian\PengembalianController as Pengembalian;
 
 Route::get('/', function () {
     return Inertia::render('welcome');
