@@ -13,7 +13,7 @@ use Auth;
 class PeminjamanController extends Controller
 {
     public function index() {
-        $query = Transaksi::with(['anggota', 'buku', 'user'])->orderBy('tanggal_pinjam', 'desc');
+        $query = Transaksi::with(['anggota', 'buku', 'user'])->whereNull('tanggal_kembali')->orderBy('tanggal_pinjam', 'desc');
 
         if (request()->has('cari')) {
             $cari = request('cari');

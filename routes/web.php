@@ -47,9 +47,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/', [Pengembalian::class, 'index'])->name('indexpengembalian');
         Route::get('/create', [Pengembalian::class, 'create'])->name('createpengembalian');
         Route::post('/', [Pengembalian::class, 'store'])->name('storepengembalian');
-        Route::get('/{id}/edit', [Pengembalian::class, 'edit'])->name('editpengembalian');
-        Route::put('/{id}/edit', [Pengembalian::class, 'update'])->name('updatepengembalian');
-        Route::delete('/{id}', [Pengembalian::class, 'destroy'])->name('destroypengembalian');
     });
 });
 
